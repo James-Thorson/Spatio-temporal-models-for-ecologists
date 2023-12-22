@@ -1,0 +1,320 @@
+% !TEX root = ./notes_template.tex
+
+\usepackage{textcomp}   % KASPER:  Necessary for angular brackets
+\usepackage{verbatim}   % JIM:  Necessary to insert verbatim output from R
+\usepackage{listings}  % JIM:  Necessary to insert code  
+\usepackage{xcolor}   % JIM:  Necessary to define backgrounds
+\usepackage{csvsimple}   % JIM:  Necessary to insert CSVs
+\usepackage[url=false,doi=false]{biblatex}  % JIM:  Necessary for bibliography, style=plain replaces  
+\usepackage[colorinlistoftodos]{todonotes}   % JIM:  Necessary for todo notes
+\usepackage{hyperref}  % JIM:  Necessary to embed URLs
+\usepackage{array}   % JIM:  Necessary to have tables with specified column widths
+
+% See default list here: https://www.overleaf.com/learn/latex/Operators
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Laplace}{\bigtriangleup}
+\DeclareMathOperator{\dv}{\bigtriangleup}
+\DeclareMathOperator{\Rho}{P}  % \Rho does not exist
+\DeclareMathOperator{\Epsilon}{E}  % \Epsilon does not exist
+\DeclareMathOperator{\Like}{\mathcal{L}}
+\newcommand*{\tabindent}{ \hspace{3mm}}
+% \log exists
+% \Pr exists
+% \do is defined already
+% \d is already defined
+
+% STUFF THAT I STILL DON'T UNDERSTAND
+\usepackage{caption}  % JIM: Necessary for table captions for some reason
+\captionsetup[table]{name=\textbf{TABLE}} %boldfont for table caption
+\captionsetup[figure]{name=\textbf{FIGURE}} %boldfont for figure caption
+%\captionsetup[lstlisting]{name=\textbf{CODE}} %boldfont for figure caption
+\renewcommand\lstlistingname{\textbf{CODE}} % boldfont and Code for listings 
+%\usepackage{subcaption}  % JIM: Alternative to caption, but conflicts with subfigure
+\usepackage{appendix}  % JIM:  Necessary to have appendices
+\usepackage{tabularx}  % JIM:  Necessary to get tables to fit page width, see https://tex.stackexchange.com/questions/10535/how-to-force-a-table-into-page-width
+
+% alt-text experiment
+% https://libguides.lib.msu.edu/c.php?g=995742&p=8207771#:~:text=In%20order%20to%20create%20a,choose%20%5Btagged%2C%20highstructure%5D%20.&text=Once%20you%20have%20loaded%20in,add%20alt%20text%20to%20figures.
+% https://www.overleaf.com/learn/latex/An_introduction_to_tagged_PDF_files%3A_internals_and_the_challenges_of_accessibility
+% https://www.businessinsider.com/guides/tech/how-to-see-alt-text-in-pdf
+%\usepackage[highstructure]{accessibility}
+
+
+%%%%%%%%%%%%%%%% hyperref %%%%%%%%%%%%%%%%%%%%%
+\hypersetup{
+    colorlinks=true,
+    citecolor=magenta,
+    linkcolor=blue,
+    filecolor=green,      
+    urlcolor=cyan,
+    % hypertexnames=false,
+}
+
+%%%%%%%%%%%%%%%% Define codebox colors %%%%%%%%%%%%%%%%%%%%%
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codeblue}{rgb}{0,0,0.6}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backblue}{rgb}{0.95,0.92,0.95}
+\lstdefinestyle{Rcode}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    %keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstdefinestyle{TMBcode}{
+    backgroundcolor=\color{backblue},   
+    commentstyle=\color{codeblue},
+    %keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstdefinestyle{Routput}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{black},
+    %keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{black},
+    stringstyle=\color{black},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+%%%%%%%%%%%%%%%% biblatex %%%%%%%%%%%%%%%%%%%%%
+\addbibresource{references.bib}
+%\renewcommand\bibname{References} %change bibliography into References
+
+%\documentclass[11pt,openany]{book}
+%\usepackage[mono=false]{libertine} % new linux font, ignore mono
+
+% avoid bugs with xy-pic, luatex, pdftex version
+% \input{luatex-pdf}
+%\usepackage{luatex85}
+% \usepackage[all]{xy}
+
+%\renewcommand{\baselinestretch}{1.05}
+%\usepackage{amsmath,amsthm,amssymb,mathrsfs,amsfonts,dsfont}
+
+%\usepackage{epsfig,graphicx}
+%\usepackage{tabularx}
+%\usepackage{blkarray}
+%\usepackage{slashed}
+%\usepackage{color}
+%\usepackage{caption}
+
+% \usepackage{fullpage}
+%\usepackage[toc,title,titletoc,header]{appendix}
+%\usepackage{minitoc}
+%\usepackage{color}
+%\usepackage{multicol} % two-col ToC
+%\usepackage{bm}
+%\usepackage[capitalise]{cleveref}
+%\usepackage{enumitem}
+%\usepackage{mathtools}
+%\usepackage{physics}  % Necessary for \dv
+%\usepackage[linesnumbered,ruled,vlined,algosection]{algorithm2e}
+%\SetCommentSty{textsf}
+
+%\topmargin-1.2cm
+% \headheight0.0cm
+%\headheight13.6pt
+%\headsep1.2cm
+%\oddsidemargin0.0cm
+%\evensidemargin0.0cm
+%\textheight23.0cm
+%\textwidth16.9cm
+%\footskip1.0cm
+
+
+
+
+%%%%%%%%%%%%%%%% thmtools %%%%%%%%%%%%%%%%%%%%%
+%\usepackage{thmtools}
+%\declaretheorem[numberwithin=chapter]{theorem}
+%\declaretheorem[numberwithin=chapter]{axiom}
+%\declaretheorem[numberwithin=chapter]{lemma}
+%\declaretheorem[numberwithin=chapter]{proposition}
+%\declaretheorem[numberwithin=chapter]{claim}
+%\declaretheorem[numberwithin=chapter]{conjecture}
+%\declaretheorem[sibling=theorem]{corollary}
+%\declaretheorem[numberwithin=chapter, style=definition]{definition}
+%\declaretheorem[numberwithin=chapter, style=definition]{problem}
+%\declaretheorem[numberwithin=chapter, style=definition]{example}
+%\declaretheorem[numberwithin=chapter, style=definition]{exercise}
+%\declaretheorem[numberwithin=chapter, style=definition]{observation}
+%\declaretheorem[numberwithin=chapter, style=definition]{fact}
+%\declaretheorem[numberwithin=chapter, style=definition]{construction}
+%\declaretheorem[numberwithin=chapter, style=definition]{remark}
+%\declaretheorem[numberwithin=chapter, style=remark]{question}
+%%%%%%%%%%%%%%%% thmtools %%%%%%%%%%%%%%%%%%%%%
+
+%\newenvironment{solution}
+%    {\renewcommand\qedsymbol{$\square$}\color{blue}\begin{adjustwidth}{0em}{2em}\begin{proof}[\textit Solution.~]}
+%    {\end{proof}\end{adjustwidth}}
+
+%%%%%%%%%%%%%%%% index %%%%%%%%%%%%%%%%%%%%%
+%\begin{filecontents}{index.ist}
+% https://tex.stackexchange.com/questions/65247/index-with-an-initial-letter-of-the-group
+%headings_flag 1
+%heading_prefix "{\\centering\\large \\textbf{"
+%heading_suffix "}}\\nopagebreak\n"
+%delim_0 "\\nobreak\\dotfill"
+%\end{filecontents}
+%\newcommand{\myindex}[1]{\index{#1} \emph{#1}}
+%\makeindex[columns=3, intoc, title=Alphabetical Index, options= -s index.ist]
+%\newcommand*{\mbf}[1]{\mathbf{#1}}
+
+
+%%%%%%%%%%%%%%%% ToC %%%%%%%%%%%%%%%%%%%%%
+% Link Chapter title to ToC: https://tex.stackexchange.com/questions/32495/linking-the-section-text-to-the-toc
+%\usepackage[explicit]{titlesec}
+%\titleformat{\chapter}[display]
+%  {\normalfont\huge\bfseries}{\chaptertitlename\ {\thechapter}}{20pt}{\hyperlink{chap-\thechapter}{\Huge#1}
+%\addtocontents{toc}{\protect\hypertarget{chap-\thechapter}{}}}
+%\titleformat{name=\chapter,numberless}
+%  {\normalfont\huge\bfseries}{}{-20pt}{\Huge#1}
+
+%%%%%%%%%%%%%%%%%%% fancyhdr %%%%%%%%%%%%%%%%%
+%\usepackage{fancyhdr}
+%\pagestyle{fancy} % enable fancy page style
+%\renewcommand{\headrulewidth}{0.0pt} % comment if you want the rule
+%\fancyhf{} % clear header and footer
+%\fancyhead[lo,le]{\leftmark}
+%\fancyhead[re,ro]{\rightmark}
+%\fancyfoot[CE,CO]{\hyperref[toc-contents]{\thepage}}
+
+% https://tex.stackexchange.com/questions/550520/making-each-page-number-link-back-to-beginning-of-chapter-or-section
+%\makeatletter
+%\def\chaptermark#1{\markboth{\protect\hyper@linkstart{link}{\@currentHref}{Chapter %\thechapter ~ #1}\protect\hyper@linkend}{}}
+%\def\sectionmark#1{\markright{\protect\hyper@linkstart{link}{\@currentHref}%{\thesection ~ #1}\protect\hyper@linkend}}
+%\makeatother
+%%%%%%%%%%%%%%%%%%% fancyhdr %%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%% biblatex %%%%%%%%%%%%%%%%%
+%\usepackage[doi=false,url=false,isbn=false,style=alphabetic,backend=biber,backref=true]{biblatex}   
+%\addbibresource{references.bib}
+
+%\newbibmacro{string+doiurlisbn}[1]{%
+%  \iffieldundef{doi}{%
+%    \iffieldundef{url}{%
+%      \iffieldundef{isbn}{%
+%        \iffieldundef{issn}{%
+%          #1%
+%        }{%
+%          \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+%        }%
+%      }{%
+%        \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+%      }%
+%    }{%
+%      \href{\thefield{url}}{#1}%
+%    }%
+%  }{%
+%    \href{http://dx.doi.org/\thefield{doi}}{#1}%
+%  }%
+%}
+
+% https://tex.stackexchange.com/questions/94089/remove-quotes-from-inbook-reference-title-with-biblatex
+%\DeclareFieldFormat[article,incollection,inproceedings,book,misc]{title}{\usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}
+% https://tex.stackexchange.com/questions/454672/biblatex-journal-name-non-italic
+%\DeclareFieldFormat{journaltitle}{#1\isdot}
+%\DeclareFieldFormat{booktitle}{#1\isdot}
+% https://tex.stackexchange.com/questions/10682/suppress-in-biblatex
+%\renewbibmacro{in:}{}
+% add video field: https://tex.stackexchange.com/questions/111846/biblatex-2-custom-fields-only-one-is-working
+%\DeclareSourcemap{
+%    \maps[datatype=bibtex]{
+%      \map{
+%        \step[fieldsource=video]
+%        \step[fieldset=usera,origfieldval]
+%    }
+%  }
+%}
+%\DeclareFieldFormat{usera}{\href{#1}{\textsc{Online video}}}
+%\AtEveryBibitem{
+%    \csappto{blx@bbx@\thefield{entrytype}}{% put at end of entry
+%        \iffieldundef{usera}{}{\space \printfield{usera}}
+%    }
+%}
+%%%%%%%%%%%%%%%%%%% biblatex %%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% glossaries-extra %%%%%%%%%%%%%%%%%
+%\usepackage[record,abbreviations,symbols,stylemods={list,tree,mcols}]{glossaries-extra}
+% \renewcommand{\GlsXtrDefaultResourceOptions}{selection={all},src={glossary}}
+% \setglossarystyle{treegroup}
+% \setglossarystyle{listgroup}
+
+% \GlsXtrLoadResources[
+% sort={en-GB},% sort according to 'en-GB' locale
+% match={entrytype={entry}},% only select @entry
+% type={main}% put these entries in the 'main' glossary
+% ]
+
+
+%\GlsXtrLoadResources[
+%src = {abbreviation},
+%sort={en-GB},% sort according to 'en-GB' locale
+% sort-field={identifier}, % doesn't work
+%sort-field={group}, % group title heading
+%field-aliases={identifier=group},
+% match={entrytype={abbreviation}},% only select @abbreviation
+%type={abbreviations}% put these in the 'abbreviations' glossary
+%]
+
+%\GlsXtrLoadResources[
+%src = {symbol},
+%sort={letter-case},% case-sensitive letter sort
+%sort-field={group},
+%field-aliases={identifier=group},
+% match={entrytype={symbol}},% only select @symbol
+%type={symbols}% put these entries in the 'symbols' glossary
+%]
+
+
+% \glsxtrsetgrouptitle{Math}{Math}
+% \GlsXtrLoadResources[
+% type={symbols},
+% src = {symbol},
+% field-aliases={identifier=group},
+% match={group=Math}]
+
+% \GlsXtrLoadResources[
+% type={symbols},
+% src = {symbol},
+% field-aliases={identifier=group},
+% match={group=Physics}]
+%%%%%%%%%%%%%%%%%%%%% glossaries-extra %%%%%%%%%%%%%%%%%
+

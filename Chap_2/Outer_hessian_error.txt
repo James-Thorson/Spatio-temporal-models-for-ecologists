@@ -1,0 +1,2 @@
+Error in solve.default(outer_hessian) : 
+Lapack routine dgesv: system is exactly singular: U[2,2] = 0

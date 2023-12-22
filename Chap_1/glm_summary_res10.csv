@@ -1,0 +1,4 @@
+"","Estimate","Standard Error","T value","Probability"
+"Intercept",-0.106,0.056,-1.89,0.059
+"log(elevation)",-0.01,0.138,-0.073,0.942
+"log(elevation)^2",-3.793,0.3,-12.632,0

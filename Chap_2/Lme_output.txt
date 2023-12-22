@@ -1,0 +1,13 @@
+Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: poisson  ( log )
+Formula: Count ~ 1 + (1 | Site)
+   Data: Data
+     AIC      BIC   logLik deviance df.resid 
+130.4195 131.9647 -63.2098 126.4195       14 
+Random effects:
+ Groups Name        Std.Dev.
+ Site   (Intercept) 1.739   
+Number of obs: 16, groups:  Site, 16
+Fixed Effects:
+(Intercept)  
+      1.912  

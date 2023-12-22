@@ -1,0 +1,107 @@
+% !TEX root = ../notes_template.tex
+\chapter*{Preface}
+
+Many of the largest problems facing society must be confronted using information developed by scientists.  Major scientific problems often involve measurements and processes that vary over space and time, and research regarding methods for spatio-temporal analysis has been published across a wide range of disciplines.  Perhaps for this reason, there is a proliferation of vocabulary, statistical methods, and computational machinery used for spatio-temporal analysis.  This wide range of vocabulary and methods can be daunting for anyone who is interested in learning about these methods. 
+
+In this textbook, we aim to provide a gentle introduction to spatio-temporal analysis for advanced undergraduate and graduate-level students, as well as scientists conducting theoretical or applied research regarding ecology, earth sciences, and public health.  The presentation involves code in the R statistical environment highlighted in \colorbox{backcolour}{green} \cite{r_core_team_r_2021} as well as C++ code that is compiled by Template Model Builder highlighted in \colorbox{backblue}{blue} \cite{kristensen_tmb_2016}.  The presentation assumes conceptual familiarity with linear algebra and differential equations.  However, the reader is not expected to solve equations analytically.  The text instead presents a minimal toolbox for numerical analysis and computational statistics, where the analyst writes high-level code describing a given model and then flexible software automates the derivatives and integrals required for hierarchical modelling of spatio-temporal processes.
+
+\begin{table}
+  \caption[Organization of chapters]{Book chapters, including their ecological focus and the statistical skills. Ecological topics are sequenced such that statistical skills build upon those from past chapters.}
+\begin{center}
+\begin{tabularx}{\textwidth}{ | X m{2.25in} m{2.5in} | } 
+  \hline
+  Chap. & Ecological focus & Statistical skill\\ 
+  \hline
+  1 & Individual demography and habitat usage & Generalized linear models \\ & & \\ 
+  
+  2 & Variable population density among habitat patches & Hierarchical models; Laplace approximation \\ & & \\ 
+  
+  3 & Population dynamics & Univariate state-space models \\ & & \\ 
+  
+  4 & Animal movement & Multivariate state-space models \\ & & \\
+  
+  5 & Spatial variation unexplained by covariates & Two-dimensional spatial covariance \\ & & \\
+  
+  6 & Spatial inference and sampling designs & Spatial integration and preferential sampling \\ & & \\
+  
+  7 & Benefits of covariates in ecological analysis & Causal analysis using structural equation models; Integrated species distribution models \\ & & \\
+  
+  8 & Spatio-temporal inference including seasonal and interannual variation & Cyclic splines and separable space-time covariance \\ & & \\
+  
+  9 & Physical and ecological teleconnections & Exploratory factor analysis using empirical orthogonal functions; confirmatory factor analysis using spatially varying coefficients \\ & & \\
+  
+  10 & Linking individual and population-scale movement  & Specifying and solving a partial differential equation for movement using a continuous time Markov Chain;  Fitting this model to individual tracks and point-count samples \\ & & \\
+
+  11 & Community assembly and biogeography & Including trait and phylogenetic information in joint species distribution models \\ 
+  \hline
+\end{tabularx}
+  \label{tab:Chap0_chapters}
+\end{center}
+\end{table}
+
+The book is intended to cover a logical sequence from foundational to advanced topics, with ecological and statistical concepts introduced in parallel (Table \ref{tab:Chap0_chapters}).  In particular:
+\begin{itemize}
+    \item \textit{Introductory}: the first two chapters introduce the ecological and statistical foundation for subsequent chapters.  Chapter 1 shows how to approximate individual dynamics (a Lagrangian viewpoint) using discretized statistical models (an Eulerian viewpoint), and Chapter 2 introduces how to efficiently estimate parameters for hierarchical models using the Laplace approximation;  
+
+    \item \textit{Basic}: Chapters 3 then introduces univariate time-series models using population-dynamics examples, while Chapter 4 extends this to multivariate time-series models and analyzes individual movement from a Lagrangian viewpoint.  Chapters 5 introduces computationally efficient methods for two-dimensional spatial correlations, and Chapter 6 discusses applications within the context of sampling theory and spatial integration to estimate population abundance.  Finally, Chapter 7 introduces the use of covariates for ecological inference, as well as their role when combining data from multiple sampling protocols;  
+ 
+    \item \textit{Advanced}: Chapter 8 is the first to introduce an interaction of spatial and temporal variation, and discusses the distinction between interannual and seasonal variation. Chapter 9 then introduces the importance of ecological and physical teleconnections, and uses both exploratory and confirmatory factor models for their analysis.  Chapter 10 returns to the topic of movement from an Eulerian viewpoint, and presents efficient methods to estimate a habitat preference function using individual tracks and point-count data.  Finally, Chapter 11 concludes by demonstrating how multivariate spatio-temporal models can be fitted using covariates, phylogenetic, and trait information, and how results can be used to analyze ecological communities.  
+\end{itemize}    
+We typically assume that readers are familiar with content from earlier chapters, but also include links to earlier content for those who read chapters out of sequence.  We seek to demonstrate concepts using an interesting and varied set of real-world examples (Table \ref{tab:Chap0_datasets}) drawn from earth science (oceanography and atmospheric science), ecology (population dynamics, community ecology, and ecosystem modelling), and global change biology (climate and health science). All software, data, and resulting figures/tables are available online\footnote{See https://github.com/james-thorson/Spatio-temporal-models-for-ecologists/ which is organized by chapter}, and we encourage readers to modify and repurpose this code for other analyses.  Despite our best efforts, we also anticipate that the printed version will include bugs, and that changes in software dependencies will cause the code as printed to stop working.  We intend to make corrections and updates to code available via GitHub, while using numbered releases to distinguish different versions.  
+
+\begin{table}
+  \caption[List of case studies]{Case-study data used in this book, and the scientific discipline that is illustrated by their analysis.}
+\begin{center}
+\begin{tabularx}{\textwidth}{ | X m{2.5in} | } 
+  \hline
+  Case study & Scientific focus and discipline \\ 
+  \hline
+  
+  Barro Colorado vegetation census plots & Spatial dynamics  \\ & \\ 
+
+  Bering Sea fish population dynamics & Spatial and population dynamics; Climate science  \\ & \\
+  
+  Northern fur seal track using satellite tag & Movement ecology  \\ & \\
+  
+  Bald eagle counts in Breeding Bird Survey & Spatial dynamics; Movement ecology  \\ & \\
+  
+  Ozone concentrations & Atmospheric science; Human health  \\ & \\
+  
+  Multiple survey methods for red snapper in the Gulf of Mexico & Spatial dynamics;  Sampling methods  \\ & \\
+  
+  Arctic sea ice concentrations & Oceanography; Climate science  \\ & \\
+  
+  Pacific cod archival tag in the Aleutian Islands & Movement ecology; Oceanography  \\ & \\
+  
+  Habitat utilization for twenty birds in Western US states & Community ecology; Evolutionary analysis  \\
+  \hline
+\end{tabularx}
+  \label{tab:Chap0_datasets}
+\end{center}
+\end{table}
+
+We envision that many statistical ecologists are presented with an ever-increasing hodgepodge of statistical and computational techniques.  However, limits to individual and collective memory suggest that only a small and general set of techniques will continue to be used over time.  We therefore emphasize the importance of a \textit{minimal toolbox}, which allows ecologists to fit a wide range of ecological analyses using a small set of computational and software skills.  To see the importance of a minimal toolbox, consider the wide use of the Generalized Linear Model \cite{nelder_generalized_1972} in both introductory statistics courses and applied ecology.  This simple model structure (introduced in Chapter 1) provides ecologists with a single procedure for model fitting, testing, and evaluation, which then includes analysis of variance, contingency tables, probit analysis, and linear regression as special cases.  In this textbook, we propose a minimal toolbox for spatio-temporal analysis of ecological data, and in fact, proceed by extending the generalized linear model framework itself.    
+
+To complement this minimal toolbox, we also present a \textit{comprehensive word bank} that is associated with spatio-temporal models.  This includes a huge range of specialized terms, e.g., infill and sprawl asymptotics, separable models, Gaussian processes, and semivariograms.  We feel that this large word bank is important, both as a starting point for readers to follow up on individual topics, and to emphasize foundational concepts and methodologies.  Rather than defining these terms mathematically, we aim to introduce them via ecological examples so that readers can immediately see what insight each term can provide.  We then encourage interested readers to use this word bank as a starting point for further specialized reading (which presumably will then provide further mathematical details).  
+
+Based on our experience, we have chosen to use Template Model Builder \cite{kristensen_tmb_2016} and the R statistical platform \cite{r_core_team_r_2021} to develop the minimal toolbox.  Specifically, we include TMB because:
+\begin{itemize}
+    \item \textit{Flexibility}:  it facilitates fitting a wide range of linear and nonlinear models that give rise to correlations among variables accross space and time, while giving analysts detailed control over model specification;
+    
+    \item \textit{Simplification}:  it includes high-level functions that simplify common operations including the construction of covariance matrices, defining separable spatio-temporal processes, and computing the matrix exponential;
+    
+    \item \textit{Automation}: it can apply the Laplace approximation for maximum-likelihood estimation or Markov chain Monte Carlo for Bayesian estimation, so that the analysts can focus on model specification rather than computational methods;
+    
+    \item \textit{Computational efficiency}: it automatically computes gradients (using automatic differentiation) while detecting model sparsity (for efficient use of the Laplace approximation), and provides an interface to the Eigen library for advanced users.
+\end{itemize}
+To complement these benefits, we include R because:
+\begin{itemize}
+    \item \textit{Familiarity}:  it is widely used by ecologists for importing, pre-processing, and visualizing data and model outputs, and therefore provides a general and familiar software interface;
+    
+    \item \textit{Spatial data types}:  it includes general functionality for spatial, temporal, and phylogenetic data and therefore simplifies the process of importing, exporting, and plotting these common types of ecological data.  We specifically emphasize using core R-packages \colorbox{backcolour}{sf} \cite{pebesma_simple_2018} and \colorbox{backcolour}{terra} \cite{hijmans_package_2022} to read, process, project, and plot spatial data;
+
+    \item \textit{Extensibility}:  it includes a wide range of packages that can be used to post-process the output from custom-built statistical models, and therefore extends the ecological inference that can be efficiently made.
+\end{itemize}
+We therefore believe that this combination of R and TMB provides a minimal toolbox for theoretical and applied ecologists, while still allowing for efficient and flexible development of statistical models.  Ultimately, we hope that this combination of minimal toolbox and comprehensive word bank allows applied ecologists to engage with and contribute to the growing field of spatio-temporal modelling.  
+
+

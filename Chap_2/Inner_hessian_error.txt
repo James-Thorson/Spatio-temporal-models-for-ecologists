@@ -1,0 +1,14 @@
+iter: 1  value: 862.7342 mgc: 100 ustep: 0.0692153 
+iter: 2  value: 266.728 mgc: 904.1507 ustep: 0.2631617 
+iter: 3  value: 105.5603 mgc: 308.9029 ustep: 0.5130416 
+iter: 4  value: 78.98625 mgc: 92.27675 ustep: 0.7162976 
+iter: 5  value: 77.18475 mgc: 19.02569 ustep: 0.846359 
+iter: 6  value: 77.08321 mgc: 1.456402 ustep: 0.9199857 
+iter: 7  value: 77.05425 mgc: 0.05938868 ustep: 0.959163 
+iter: 8  value: 77.04899 mgc: 0.02162014 ustep: 0.9793707 
+iter: 9  value: 77.04861 mgc: 0.005434197 ustep: 0.9896326 
+iter: 10  value: 77.0486 mgc: 0.0007698619 ustep: 0.9948033 
+iter: 11  value: 77.0486 mgc: 5.440074e-05 ustep: 0.9973985 
+iter: 12  value: 77.0486 mgc: 1.917284e-06 ustep: 0.9986986 
+iter: 13  value: 77.0486 mgc: 3.414297e-08 ustep: 0.9993491 
+iter: 14  [1] NaN

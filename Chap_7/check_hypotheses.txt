@@ -1,0 +1,7 @@
+> summary(opt$SD, 'report')
+          Estimate Std. Error Est. (bias.correct) Std. (bias.correct)
+sumlambda 898.4969   30.45608                 919                  NA
+> sum(lambda_s)
+[1] 953.4628
+> sqrt(sum(c_i))
+[1] 30.31501

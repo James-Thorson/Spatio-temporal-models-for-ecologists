@@ -1,0 +1,99 @@
+\documentclass[krantz2]{krantz} %See documentation for other class options
+%\usepackage{fixltx2e,fix-cm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{makeidx}
+\usepackage{multicol}
+
+%\usepackage[breaklinks]{hyperref}
+
+\makeindex
+\newcommand{\myindex}[1]{\index{#1} \emph{#1}}
+
+\include{preamble} %place custom commands and macros here
+
+\begin{document}
+
+\frontmatter
+
+\halftitle{Spatio-temporal Models for Ecologists}{Standard blurb goes here}%%Placeholder for Half title
+
+%\seriespg{Series page goes here (if applicable); otherwise blank}%%Comment this line if series page not available
+
+\title{Spatio-temporal Models for Ecologists} %This is a placeholder titlepage, it will not be final.
+%%
+\subtitle{A Practical Roadmap Using Template Model Builder}
+
+\edition{First Edition}
+
+\author{James T. Thorson, Kasper Kristensen}%%Used for authored book
+
+%\editor{Editor Name(s)}%%Used for Edited book
+
+
+\maketitle
+
+%%%Placeholder for front matter
+
+
+%\booktitle{}{}%%Place holder for author
+
+\locpage
+
+%\include{frontmatter/dedication}
+\cleardoublepage
+\setcounter{page}{7} %previous pages will be reserved for frontmatter to be added in later.
+\tableofcontents
+%\include{frontmatter/foreword}
+\include{./chapter/preface}
+%\include{frontmatter/author}
+\listoffigures
+\listoftables
+%\include{frontmatter/contributors}
+%\include{frontmatter/symbollist}
+
+
+%%%%%%%%%%%%%%%Content%%%%%%%%%%%%%%%
+\mainmatter % separate the number of toc and mainmatter
+
+\part{Introductory}
+\include{./chapter/Chap_1}
+\include{./chapter/Chap_2}
+
+\part{Basic}
+\include{./chapter/Chap_3}
+\include{./chapter/Chap_4}
+\include{./chapter/Chap_5}
+\include{./chapter/Chap_6}
+\include{./chapter/Chap_7}
+
+\part{Advanced}
+\include{./chapter/Chap_8}
+\include{./chapter/Chap_9}
+\include{./chapter/Chap_10}
+\include{./chapter/Chap_11}
+\include{./chapter/Chap_12}
+
+\begin{appendices}
+\include{./chapter/Acknowledgements}
+\include{./chapter/appendix_formula}
+\end{appendices}
+
+\backmatter
+
+%%%%%%%%%%%%%%% Reference %%%%%%%%%%%%%%%
+
+%\bibliographystyle{plain}  % Can't mix this function with 
+%\newpage
+% https://tex.stackexchange.com/questions/298507/switch-defined-header-during-bibliography-pages
+%\markboth{header text}{header text}
+\printbibliography
+%\markboth{header text}{header text}
+% \bibliography{references.bib}
+
+\printindex
+
+\end{document}
+

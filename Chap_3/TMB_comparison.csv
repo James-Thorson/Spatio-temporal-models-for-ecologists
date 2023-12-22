@@ -1,0 +1,6 @@
+"CAR.params","Estimate","Std..Error","SAR.params","Estimate.1","Std..Error.1"
+"log_d0",19,0.143,"log_delta",-1.06,0.147
+"log_sigmaP",-2.82,0.807,"log_sigmaP",-2.29,0.739
+"log_sigmaM",-1.91,0.223,"log_sigmaM",-1.93,0.216
+"alpha",4.66,1.12,"alpha",4.57,1.01
+"rho",0.768,0.056,"rho",0.773,0.0504

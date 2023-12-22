@@ -1,0 +1,8 @@
+sdreport(.) result
+       Estimate Std. Error
+ln_mu 1.9089677        NaN
+ln_mu 0.0000000        NaN
+ln_sd 0.5551555        NaN
+Warning:
+Hessian of fixed effects was not positive definite.
+Maximum gradient component: 6.30028e-08 

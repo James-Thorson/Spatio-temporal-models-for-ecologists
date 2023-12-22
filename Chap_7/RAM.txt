@@ -1,0 +1,6 @@
+  heads to from parameter start
+1     1  2    1         1  <NA>
+2     1  3    2         2  <NA>
+3     2  3    3         0  0.01
+4     2  1    1         3  <NA>
+5     2  2    2         4  <NA>

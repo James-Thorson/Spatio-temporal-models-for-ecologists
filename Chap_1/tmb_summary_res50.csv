@@ -1,0 +1,4 @@
+"","Estimate","Standard Error"
+"Intercept",2.957,0.054
+"log(elevation)",-0.097,0.13
+"log(elevation)^2",-2.653,0.218

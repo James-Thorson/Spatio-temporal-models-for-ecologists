@@ -1,0 +1,91 @@
+% !TEX root = ../notes_template.tex
+\chapter{A Decadal Forecast for Spatio-temporal Models}\label{sec:Chap12_wrapup}
+
+\section{Additional Tools for a Minimal Toolbox}
+
+The biological realism, computational efficiency, and breadth of application for spatio-temporal analysis is rapidly developing.  Rapid advancement is exciting for researchers, but has obvious disadvantages when trying to categorize, summarize, and simplify methods.  Most obviously, any textbook on spatio-temporal models risks being out-of-date by the time it is published.  Additionally, current spatio-temporal research proceeds in parallel in multiple disciplines, and it is difficult to decide what to include in a \textit{minimal toolbox} during early stages of development.  To address these concerns, we conclude by noting a few topics that deserved inclusion but which we ultimately did not transform into chapters.  
+
+\subsection{Non-separable Models}
+
+\begin{table}
+  \caption[Modular constructors for sparse precision or covariance]{Alternative ways to construct the a sparse precision matrix, or project variables in a way that results in a specified covariance, where these can then be combined in a modular fashion to construct separable multivariate spatio-temporal models.}
+\begin{center}
+\begin{tabularx}{\textwidth}{ | X m{0.5in} m{2.5in} | } 
+  \hline
+  Name & Equation & Ecological use \\ 
+  \hline
+
+  1D autoregressive &  \ref{eq:Chap3_joint_precision} & Time-series or one-dimensional space \\ & & \\ 
+  
+  Conditional autoregressive &  \ref{eq:Chap5_CAR} & Areal (e.g., gridded multidimensional) space \\ & & \\ 
+  
+  Simultaneous autoregressive &  \ref{eq:Appendix_SAR_precision} & Areal (e.g., gridded multidimensional) space \\ & & \\ 
+  
+  SPDE & \ref{eq:Chap5_SPDE_precision} & Continuous two-dimensional space \\ & & \\
+
+  Multiplying (projecting) by basis functions & \ref{eq:Chap5_tensor_spline} & Continuous variation among multiple dimensions \\ & & \\ 
+  
+  Factor model & \ref{eq:Chap4_factor_model} & Covariance among categories (individuals, species, etc.) resulting from ordination (a.k.a. rank reduction) \\ & & \\ 
+  
+  Structural equation model & \ref{eq:Chap4_SEM_covariance} & Covariance among categories resulting from specified linear effects \\  
+  
+  \hline
+\end{tabularx}
+  \label{tab:Chap12_modular_elements}
+\end{center}
+\end{table}
+
+Throughout the book, we introduced a variety of simple ways to construct a precision or covariance matrix, which then represents correlations among ecological variables arising from different mechanisms (Table \ref{tab:Chap12_modular_elements}). These elementary building-blocks can be swapped in and out easily when building ecological models. They can also be used to represent alternative ecological assumptions, and model performance can then compared for a given data set.  For example, an analyst can compare structural equation and factor-model construction of the covariance in movement for multiple animals (Section \ref{Section:Chap4_comparing_factor_and_SEM}).  Ecologists can then combine these building-blocks (using a Kronecker product or the \colorbox{backblue}{SEPARABLE} function in the \colorbox{backblue}{density} namespace) to construct the joint covariance across space, time, phylogeny, individuals, and species.  For example, an analyst can build a spatio-temporal model by combining a spatial covariance with either temporal autocorrelation (the index model in Section \ref{sec:Chap8_interannual_dynamics}) or a temporal factor model (the generalization of empirical orthogonal function models in Section \ref{sec:Chap9_EOF}).  These techniques allow a model-building workflow that is:
+
+\begin{itemize}
+    \item \textit{Modular}, allowing researchers to quickly swap in new model elements, explore the consequence, and continue with model development.  Modularity then allows the iterative model-building process to be guided by research goals rather than software constraints.  We suspect that modularity contributes to the growing popularity of integrated population models \cite{kery_integrated_2021}, and facilitates the research-driven model development that ecologists expect when building statistical software; 
+
+    \item \textit{Computationally efficient}, allowing researchers to use a single software platform (using automatic differentiation and the Laplace approximation) for statistical inference across huge range of model complexities.  This then avoids any need to rewrite the model in new software as study goals change.
+\end{itemize}
+We suspect that combining different precision or covariance constructors to create separable models will be sufficient for most researchers and practitioners. 
+
+However, we have avoided any comprehensive discussion of non-separable spatio-temporal processes, which arise from interactions among variables that are more complicated than a separable process can represent.  Instead, we have emphasized a few ecological processes that might cause non-separable dynamics (e.g., movement in Chapter \ref{Chap10_movement}), and have noted how these can be specified as a Markov process by defining the expected value for spatial variables in time \(t\) based on a transformation of their value in time \(t-1\) (e.g., Section \ref{sec:Chap10_CTMC_eagle}).  However, there is a large body of research regarding specific classes of non-separable models where the precision matrix can be constructed efficiently and then approximate a wide range of real-world mechanisms \cite{prates_non-separable_2022}.  Many of these non-separable models are both mathematically elegant and require few modifications to the sparse precision matrices that we have emphasized throughout our presentation \cite{lindgren_diffusion-based_2023}.  We agree that accurate and mechanistic forecasting for ecological dynamics likely requires developing a toolbox for simple non-separable models, and encourage ongoing research using a wide variety of statistical and computational approaches.  However, we do not yet know which methods to include in a \textit{minimal toolbox} for non-separable spatio-temporal models for ecological systems.  A decade from now, we anticipate that any minimal toolbox for ecologists will include several efficient specifications for non-separable processes.     
+
+\subsection{Size, Age, and Stage-structured Models}
+
+Demographic rates (e.g., metabolic rate, growth, and consumption) scale in predictable ways based on individual size, both across taxa and among individuals within a given taxon \cite{brown_toward_2004}. For this reason, ecologists have included information regarding individual age, size, or stage in ecological models for over one-hundred years \cite{lotka_relation_1907}.  Such models are widely used by applied ecologists where, e.g., the specified age or size dynamics provides a \textit{demographic motherboard} for an integrated population model, and all observations are then hardwired to this motherboard by defining how their distribution is linked to size and age-structured variables \cite{kery_integrated_2021}. 
+
+Information regarding size, age, stage, and sex is particularly interesting within a spatio-temporal model for several reasons.  For example, many organisms show striking differences in habitat utilization between juveniles and adults.  As an extreme example, Chinook salmon (\textit{Oncorhynchus tshawytscha}) start their lives in freshwater habitats, migrate to ocean habitats for adult feeding and growth, and complete their lifecycle by spawning and then dying in freshwater.  This results in an ecological teleconnection that affects ecosystem function in both marine and freshwater habitats \cite{armstrong_resource_2016,springer_transhemispheric_2018}.  Similarly, migratory monarch butterflies complete several generations per year but still perform an annual migration that links winter habitats in Mexico and summer habitats in the eastern United States.  For these and other species, analyzing spatial distribution jointly for multiple stages is essential both for evaluating the likely outcome of potential conservation policies, as well as for understanding the ecological mechanisms that underlie observed patterns.   
+
+Given this ecological importance, there is a growing literature regarding multivariate spatial and spatio-temporal models that treat different sizes or ages as separate spatial variables (i.e., combining methods from Chapters \ref{Chap:spatiotemporal} and \ref{sec:Chap11_joint}). The simplest way to proceed is by defining a separable multivariate spatio-temporal model, e.g., using a factor model (Section \ref{sec:Chap4_factor_model}) to represent covariance among sizes or ages \cite{kai_predicting_2017}. However, this approach does not use demographic information about size or age transitions.  Some studies have added size- and age-dependent growth and survival within spatio-temporal models, and these studies confirm that many classic size and age-structured models can be efficiently embedded within a spatio-temporal analysis.  The simplest way to do so is to replace one or more scalar variables (e.g., abundance-at-age) with vector variables (e.g., density-at-age for a discretized set of areas), and then define a spatial precision matrix that represents spatial covariance among those areas.  In some cases, the specified model for time-series age- or size-structured dynamics results in a simple expression for covariance among ages and over time, for example, when assuming individual size increases linearly with age \cite{kristensen_estimating_2014}.  In these cases, adding a spatial covariance results in a separable multivariate spatio-temporal covariance, which then allows efficient computation.  In other cases, the specified time-series dynamics for ages/sizes does not have a closed-form covariance \cite{thorson_spatial_2015}.  These cases result in a non-separable spatio-temporal process, but they can still be specified and fitted by specifying dynamics as a series of conditional distributions (Eq. \ref{eq:Chap8_nonseparable}). This specification still results in a sparse precision matrix (and reasonably efficient computation) when dynamics are Markovian.      
+
+Despite progress regarding age- and size-structured spatio-temporal models, there has been less research on combining structured dynamics with other spatial processes such as individual movement when estimating spatially correlated variables.  This lack of research is perhaps unsurprising, given that efficient approaches to analyze animal movement are also an ongoing topic for research (e.g., Chapter \ref{Chap10_movement}).  We therefore recommend ongoing research to add mechanistic detail including movement to size and age-structured spatio-temporal models.  In some cases, there may be useful special cases or analytical techniques that result in efficient computation \cite{lindgren_diffusion-based_2023}.  
+
+\subsection{Empirical Dynamic Models}
+Throughout this textbook, we have typically assumed that analysts can specify a function that closely approximates system dynamics (e.g., Eq. \ref{eq:Chap3_population_dynamics} or \ref{eq:Chap8_nonseparable}), which can then be extended by estimating spatio-temporal correlations in ecological variables.  For simplicity of presentation, we have typically approximated this dynamical function as a linear model, such that we can fit a Gompertz or other autoregressive process (e.g., Chapter \ref{chp:state_space}).  Specifying a parametric function (whether linear or nonlinear) then allows us to efficiently fit the hypothesized dynamics to data, and subsequently predict densities across space or time.  
+
+However, fitting a parametric function representing system dynamics will perform poorly when ecological processes are either:
+\begin{enumerate}
+    \item \textit{Poorly known}:  in many cases, ecologists do not know a simplified equation that provides an accurate approximation to ecological dynamics.  This occurs both because important system variables have not been identified or measured, and because variables may interact in ways that have not been studied for that system.  In both cases, this then results in \textit{ecological surprise} \cite{doak_understanding_2008};
+
+    \item \textit{Chaotic}:  in other cases, ecological systems involve rapid and strong linkages among system variables (e.g., fast population growth rates in short-lived taxa).  In these cases, ecological dynamics may become chaotic \cite{rogers_chaos_2022}, i.e., where small perturbations are expected to grow in importance over time such that forecasts cannot be reliably computed past a certain time-horizon.  Chaotic dynamics complicate any simple process for fitting or interpreting the output of linear state-space models \cite{perretti_model-free_2013}.
+\end{enumerate}
+We suspect that one or both cases will apply to many important problems in ecology, earth sciences, and public health.  
+
+Fortunately, both unknown and chaotic dynamics can be addressed by reconstructing system dynamics from lagged measurements of previous dynamics.  This involves estimating a nonlinear function \(g(.)\) representing system changes:
+
+\begin{equation} \label{eq:Chap12_EDM}
+    \mathbf{n}_{t+1} - \mathbf{n}_t = g( \mathbf{n}_t, \mathbf{n}_{t-1}, \mathbf{n}_{t-2}, ... )
+\end{equation}
+where the function \(g(.)\) representing system dynamics treats past system state as a covariate while adding flexibility by applying a lag operator for basis expansion (see Section \ref{sec:Chap5:splines}).  Eq. \ref{eq:Chap12_EDM} then uses this lag basis-expansion to predict the next system change, and theory shows that this lag-basis expansion can capture important properties of the original system \cite{takens_detecting_1981}.  Function \(g\) can be estimated as a Gaussian process or using nonlinear estimation methods, where the resulting estimator is currently called \myindex{empirical dynamic modelling} (EDM) \cite{munch_recent_2023}.
+
+There are many productive avenues to combine EDM and spatio-temporal analysis.  The most obvious involves discretizing space and defining system variables in each area as a separate variable in the EDM.  Such an approach has revealed linkages in blue-crab dynamics along the eastern United States \cite{rogers_hidden_2020}.  Alternatively, it is conceptually straightforward to introduce a small number of spatial basis functions to define spatial projection matrix \(\mathbf{A}\) (e.g., analogous to the interpolation matrix used in the SPDE method, see Section \ref{sec:Chap5_SPDE}).  Analysis would then specify local measurements using the spatial projection of EDM variables, \(\mathbf{An}\).  Parameters defining this projection matrix could then be estimated as the same time as parameters defining the EDM function \(g\). Whether using EDM or other methods, we recommend ongoing research regarding \myindex{semi-parametric} models that can estimate system dynamics flexibly at the same time as spatio-temporal variables \cite{thorson_bayesian_2014}.    
+
+\section{Addressing Barriers to Adoption}
+
+Throughout this book, we argue that spatio-temporal models are ready for real-world applications to inform public policy, and will offer useful insights or improvements over conventional approaches.  However, in policy-relevant fields such as econometrics, public health, and fisheries science, we anticipate that adoption of spatio-temporal methods will be rate-limited by three inter-connected steps: 
+
+\begin{enumerate}
+    \item \textit{Evaluation}:  in many governments, scientific information is discussed by elected or appointed representatives who decide on real-world regulatory changes.  These decisions are typically made using incomplete information, where the importance of scientific evidence is weighed based on its perceived credibility.  In these venues, it is important to allow a broad range of researchers to independently evaluate and debate the relative merits of different methodological approaches.  Criteria for evaluation vary among disciplines, and methods must often be adapted for each field of public policy.  Ongoing research is badly needed to evaluate spatio-temporal model performance within the context of specific policy goals for use in real-world applications;    
+
+    \item \textit{Education}:  to both apply and progressively improve spatio-temporal models, we anticipate needing ideas and perspectives from a broader range of researchers than currently conduct spatio-temporal research.  We therefore recommend that more graduate programs (not restricted to statistics departments) offer some coursework regarding the use of spatio-temporal methods in their discipline; 
+
+    \item \textit{Simplification}:  to support these tasks (evaluating and teaching spatio-temporal methods), we see a continuing need to identify a minimal toolbox for spatio-temporal modelling. This toolbox should perform well on average for new real-world problems, be sufficiently general to cover most use-cases, and minimize barriers-to-entry for scientists seeking to understand, review, or adapt methods.  This textbook represents one perspective on defining such a minimal toolbox, but we encourage other researchers to propose alternative approaches to simplify the presentation of spatio-temporal vocabulary and techniques (e.g., \cite{wikle_spatio-temporal_2019}).  Presumably, educators could then compare these alternatives based on student outcomes and simplicity of presentation.  
+\end{enumerate}
+These three rate-limiting steps are being addressed in myriad different ways by researchers worldwide.  We're excited to see the next decade of research in spatio-temporal models, and hope you are too.    
+
